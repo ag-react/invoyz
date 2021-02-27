@@ -1,18 +1,15 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-
 module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    screens: {
-      xs: '375px',
-      ...defaultTheme.screens,
-    },
     fontFamily: {
       sans: ['Spartan'],
       serif: ['sans-serif']
     },
     extend: {
+      screens: {
+        xs: '375px',
+      },
       fontSize: {
         'h1': ['32px', {
           lineHeight: '36px',
@@ -51,9 +48,11 @@ module.exports = {
         'redish': '#EC5757',
         'redish-faded': '#FF9797',
         'green': '#33D69F',
-        'green-faded': '#33D69F57',
+        'green-faded': '#33D69F10',
         'yellow': '#FF8F00',
-        'yellow-faded': '#FF8F0057',
+        'yellow-faded': '#FF8F0010',
+        'dim': '#373B53',
+        'dim-faded': '#373B5310',
         'light': '#F8F8FB',
         'dark': '#141625',
         'divider': '#494E6E',
@@ -67,6 +66,13 @@ module.exports = {
         '5000': 5000,
         '9999': 9999
       },
+      spacing: {
+        '18': '4.5rem'
+      },
+      gridTemplateColumns: {
+        'list-big': '80px 120px 1fr 100px 105px 15px',
+        'list-banner': 'auto 1fr'
+      }
     },
   },
   variants: {
