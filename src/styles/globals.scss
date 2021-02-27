@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html, body {
+    min-height: 100vh;
+  }
+
   body {
     margin: 0;
     font-family: 'Spartan', sans-serif;

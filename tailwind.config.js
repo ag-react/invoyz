@@ -56,6 +56,7 @@ module.exports = {
         'yellow-faded': '#FF8F0057',
         'light': '#F8F8FB',
         'dark': '#141625',
+        'divider': '#494E6E',
       },
       container: {
         screens: {
