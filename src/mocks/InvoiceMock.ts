@@ -1,13 +1,18 @@
-[
+import {
+  TInvoice,
+  InvoiceStatusEnum,
+} from './../types/InvoiceTypes';
+
+export const InvoicesMock: TInvoice[] = [
   {
     "id": "RT3080",
-    "createdOn": "2021-08-18",
-    "paymentDue": "2021-08-19",
+    "createdOn": new Date("2021-08-18"),
+    "paymentDue": new Date("2021-08-19"),
     "description": "Re-branding",
     "paymentTerms": 1,
     "clientName": "Jensen Huang",
     "clientEmail": "jensenh@mail.com",
-    "status": "paid",
+    "status": InvoiceStatusEnum.PAID,
     "senderAddress": {
       "street": "19 Union Terrace",
       "city": "London",
@@ -32,13 +37,13 @@
   },
   {
     "id": "XM9141",
-    "createdOn": "2021-08-21",
-    "paymentDue": "2021-09-20",
+    "createdOn": new Date("2021-08-21"),
+    "paymentDue": new Date("2021-09-20"),
     "description": "Graphic Design",
     "paymentTerms": 30,
     "clientName": "Alex Grim",
     "clientEmail": "alexgrim@mail.com",
-    "status": "pending",
+    "status": InvoiceStatusEnum.PENDING,
     "senderAddress": {
       "street": "19 Union Terrace",
       "city": "London",
@@ -69,13 +74,13 @@
   },
   {
     "id": "RG0314",
-    "createdOn": "2021-09-24",
-    "paymentDue": "2021-10-01",
+    "createdOn": new Date("2021-09-24"),
+    "paymentDue": new Date("2021-10-01"),
     "description": "Website Redesign",
     "paymentTerms": 7,
     "clientName": "John Morrison",
     "clientEmail": "jm@myco.com",
-    "status": "paid",
+    "status": InvoiceStatusEnum.PAID,
     "senderAddress": {
       "street": "19 Union Terrace",
       "city": "London",
@@ -100,13 +105,13 @@
   },
   {
     "id": "RT2080",
-    "createdOn": "2021-10-11",
-    "paymentDue": "2021-10-12",
+    "createdOn": new Date("2021-10-11"),
+    "paymentDue": new Date("2021-10-12"),
     "description": "Logo Concept",
     "paymentTerms": 1,
     "clientName": "Alysa Werner",
     "clientEmail": "alysa@email.co.uk",
-    "status": "pending",
+    "status": InvoiceStatusEnum.PENDING,
     "senderAddress": {
       "street": "19 Union Terrace",
       "city": "London",
@@ -131,13 +136,13 @@
   },
   {
     "id": "AA1449",
-    "createdOn": "2021-10-7",
-    "paymentDue": "2021-10-14",
+    "createdOn": new Date("2021-10-7"),
+    "paymentDue": new Date("2021-10-14"),
     "description": "Re-branding",
     "paymentTerms": 7,
     "clientName": "Mellisa Clarke",
     "clientEmail": "mellisa.clarke@example.com",
-    "status": "pending",
+    "status": InvoiceStatusEnum.PENDING,
     "senderAddress": {
       "street": "19 Union Terrace",
       "city": "London",
@@ -168,13 +173,13 @@
   },
   {
     "id": "TY9141",
-    "createdOn": "2021-10-01",
-    "paymentDue": "2021-10-31",
+    "createdOn": new Date("2021-10-01"),
+    "paymentDue": new Date("2021-10-31"),
     "description": "Landing Page Design",
     "paymentTerms": 30,
     "clientName": "Thomas Wayne",
     "clientEmail": "thomas@dc.com",
-    "status": "pending",
+    "status": InvoiceStatusEnum.PENDING,
     "senderAddress": {
       "street": "19 Union Terrace",
       "city": "London",
@@ -199,13 +204,13 @@
   },
   {
     "id": "FV2353",
-    "createdOn": "2021-11-05",
-    "paymentDue": "2021-11-12",
+    "createdOn": new Date("2021-11-05"),
+    "paymentDue": new Date("2021-11-12"),
     "description": "Logo Re-design",
     "paymentTerms": 7,
     "clientName": "Anita Wainwright",
     "clientEmail": "",
-    "status": "draft",
+    "status": InvoiceStatusEnum.DRAFT,
     "senderAddress": {
       "street": "19 Union Terrace",
       "city": "London",
@@ -228,4 +233,5 @@
     ],
     "total": 3102.04
   }
-]
+];
+

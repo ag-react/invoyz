@@ -1,0 +1,1 @@
+export const kStorageKey = `galatsgo-${process.env.NEXT_PUBLIC_STORAGE_KEY}`;
