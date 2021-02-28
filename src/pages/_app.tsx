@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
       <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
     </Head>
 
-    <StoreProvider >
+    {/* <StoreProvider >
       <div className="relative flex h-screen bg-light">
         <section className="absolute left-0 top-0 right-0 lg:right-auto bottom-auto lg:bottom-0 h-20 lg:h-auto w-full lg:w-20">
           <MenuView />
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </section>
       </div>
-    </StoreProvider>
+    </StoreProvider> */}
   </>;
 }
 
