@@ -57,26 +57,22 @@ function InvoiceListFilter(props: ComponentProps) {
         </div>
       </div>
 
-      {
-        (showItems === true) && (
-          <div className="relative">
-            <div className="absolute transition-all top-4 -left-10 -right-10 bg-white rounded-lg p-6 space-y-4 z-10 shadow-md">
-              <CheckBoxComp
-                checked={checkboxes.draft}
-                label={InvoiceStatusEnum.DRAFT}
-                onChange={(checked) => onCheckboxClick(InvoiceStatusEnum.DRAFT, checked)}/>
-              <CheckBoxComp
-                checked={checkboxes.pending}
-                label={InvoiceStatusEnum.PENDING}
-                onChange={(checked) => onCheckboxClick(InvoiceStatusEnum.PENDING, checked)}/>
-              <CheckBoxComp
-                checked={checkboxes.paid}
-                label={InvoiceStatusEnum.PAID}
-                onChange={(checked) => onCheckboxClick(InvoiceStatusEnum.PAID, checked)}/>
-            </div>
-          </div>
-        )
-      }
+      <div className={`${showItems ? 'relative' : 'hidden'}`}>
+        <div className="absolute transition-all top-4 -left-10 -right-10 bg-white rounded-lg p-6 space-y-4 z-10 shadow-md">
+          <CheckBoxComp
+            checked={checkboxes.draft}
+            label={InvoiceStatusEnum.DRAFT}
+            onChange={(checked) => onCheckboxClick(InvoiceStatusEnum.DRAFT, checked)}/>
+          <CheckBoxComp
+            checked={checkboxes.pending}
+            label={InvoiceStatusEnum.PENDING}
+            onChange={(checked) => onCheckboxClick(InvoiceStatusEnum.PENDING, checked)}/>
+          <CheckBoxComp
+            checked={checkboxes.paid}
+            label={InvoiceStatusEnum.PAID}
+            onChange={(checked) => onCheckboxClick(InvoiceStatusEnum.PAID, checked)}/>
+        </div>
+      </div>
     </div>
   )
 }
