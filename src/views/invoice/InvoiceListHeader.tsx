@@ -25,7 +25,7 @@ function InvoiceListHeader(props: ComponentProps) {
 
       <div className="space-x-8">
         <div>
-          <InvoiceListFilter onChange={props.onFilterChange}/>
+          {/* <InvoiceListFilter onChange={props.onFilterChange}/> */}
         </div>
       </div>
     </div>
