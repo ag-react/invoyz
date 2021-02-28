@@ -1,6 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 
+import "tailwindcss/tailwind.css";
+
 import '../styles/globals.scss';
 
 import { StoreProvider } from '../contexts/store-context';
