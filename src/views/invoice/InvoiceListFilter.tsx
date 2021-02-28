@@ -59,7 +59,8 @@ function InvoiceListFilter(props: ComponentProps) {
 
       {
         (showItems === true)
-        ? <div className="relative">
+        ? (
+          <div className="relative">
             <div className="absolute transition-all top-4 -left-10 -right-10 bg-white rounded-lg p-6 space-y-4 z-10 shadow-md">
               <CheckBoxComp
                 checked={checkboxes.draft}
@@ -75,7 +76,8 @@ function InvoiceListFilter(props: ComponentProps) {
                 onChange={(checked) => onCheckboxClick(InvoiceStatusEnum.PAID, checked)}/>
             </div>
           </div>
-        : <></>
+        )
+        : (<></>)
       }
     </div>
   )
