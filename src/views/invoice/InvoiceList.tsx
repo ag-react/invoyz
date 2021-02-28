@@ -11,11 +11,11 @@ interface ComponentProps {
 function InvoiceList(props: ComponentProps) {
   return (
     <div className="space-y-4">
-      {
+      {/* {
         props.invoices.map((invoice) => (
           <InvoiceLIstItem key={invoice.id} invoice={invoice} />
         ))
-      }
+      } */}
     </div>
   )
 }
