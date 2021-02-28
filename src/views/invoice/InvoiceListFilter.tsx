@@ -57,7 +57,7 @@ function InvoiceListFilter(props: ComponentProps) {
         </div>
       </div>
 
-      <div className={`${showItems ? 'relative' : 'hidden'}`}>
+      <div className="relative">
         <div className="absolute transition-all top-4 -left-10 -right-10 bg-white rounded-lg p-6 space-y-4 z-10 shadow-md">
           <CheckBoxComp
             checked={checkboxes.draft}
