@@ -3,17 +3,22 @@ import { observer } from "mobx-react";
 
 import useStores from "../hooks/useStores";
 
-import InvoiceList from "../views/invoice/InvoiceList";
 import PopupContainer from "../views/popup/PopupContainer";
+import InvoiceList from "../views/invoice/InvoiceList";
+import InvoiceAdd from "../views/invoice/InvoiceAdd";
 
 function Home() {
   const { invoiceStore } = useStores();
 
   const [showAddInvoiceView, setShowAddInvoiceView] = React.useState(false);
 
-  const onAddInvoice = React.useCallback(() => {
+  const onAddInvoice = () => {
     setShowAddInvoiceView(true);
-  }, []);
+  };
+
+  const onCloseAddInvoiceView = () => {
+    setShowAddInvoiceView(false);
+  };
 
   return (
     <>
@@ -31,7 +36,7 @@ function Home() {
       {
         showAddInvoiceView &&
         <PopupContainer>
-          <div>Test</div>
+          <InvoiceAdd onClose={onCloseAddInvoiceView}/>
         </PopupContainer>
       }
     </>

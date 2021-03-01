@@ -29,6 +29,10 @@ module.exports = {
           lineHeight: '15px',
           letterSpacing: '-0.25px',
         }],
+        'subtitle': ['24px', {
+          lineHeight: '32px',
+          letterSpacing: '-0.5px',
+        }],
         'body1': ['12px', {
           lineHeight: '15px',
           letterSpacing: '-0.25px',
@@ -37,6 +41,10 @@ module.exports = {
           lineHeight: '18px',
           letterSpacing: '-0.23px',
         }],
+        'body3': ['10px', {
+          lineHeight: '15px',
+          letterSpacing: '-0.21px',
+        }],
       },
       colors: {
         'indigo': '#7C5DFA',
@@ -44,6 +52,7 @@ module.exports = {
         'indigo-dark': '#252945',
         'indigo-darker': '#1E2139',
         'grayish': '#DFE3FA',
+        'grayish-light': '#F9FAFE',
         'grayish-slick': '#888EB0',
         'grayish-sky': '#7E88C3',
         'grayish-dark': '#0C0E16',
@@ -58,6 +67,8 @@ module.exports = {
         'light': '#F8F8FB',
         'dark': '#141625',
         'divider': '#494E6E',
+        'light-01': '#00000001',
+        'light-10': '#00000010',
       },
       container: {
         screens: {
@@ -69,11 +80,12 @@ module.exports = {
         '9999': 9999
       },
       spacing: {
+        '10px': '10px',
         '18': '4.5rem'
       },
       gridTemplateColumns: {
         'list-big': '80px 120px 1fr 100px 105px 15px',
-        'list-banner': 'auto 1fr'
+        'list-banner': 'auto 1fr',
       },
       width: {
         '160': '40rem'

@@ -12,16 +12,18 @@ export type TAddress = {
 };
 
 export type TInvoiceItem = {
+  id?: string,
   name: string,
   quantity: number,
   price: number,
-  total: number
+  total: number,
 }
 
 export type TInvoice = {
+  [key: string]: any,
   id: string,
-  createdOn: Date,
-  paymentDue: Date,
+  createdOn: Date | string,
+  paymentDue: Date | string,
   description: string,
   paymentTerms: number,
   clientName: string,
