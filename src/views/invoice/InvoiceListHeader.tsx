@@ -20,31 +20,39 @@ function InvoiceListHeader(props: ComponentProps) {
     <div className="flex items-center justify-between">
       <div className="space-y-2">
         <div>
-          <span className="text-grayish-dark text-h1 font-bold">
+          <span className="text-h2 font-bold text-grayish-dark md:text-h1">
             Invoices
           </span>
         </div>
-        <div>
-          <span className="text-grayish-slick text-body1 font-medium">
+        <div className="text-grayish-slick text-body1 font-medium">
+          <span className="hidden md:block">
             There are {props.invoiceCount} total invoices
+          </span>
+          <span className="block md:hidden">
+            {props.invoiceCount} invoices
           </span>
         </div>
       </div>
 
-      <div className="space-x-8 flex items-center">
+      <div className="space-x-4 md:space-x-8 flex items-center">
         <InvoiceListFilter onChange={props.onFilterChange}/>
         <ButtonComp
-          label={
-            <span className="text-h4 font-bold text-white">
-              New Invoice
-            </span>
-          }
           icon={
-            <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white">
+            <div className="flex-none w-8 h-8 rounded-full flex items-center justify-center bg-white">
               <AddIcon
                 width="10px"
                 height="10px"
                 className="group-hover:fill-current group-hover:text-indigo-faded"/>
+            </div>
+          }
+          label={
+            <div className="text-h4 font-bold text-white">
+              <span className="hidden md:block">
+                New Invoice
+              </span>
+              <span className="block md:hidden">
+                New
+              </span>
             </div>
           }
           className="group bg-indigo hover:bg-indigo-faded"

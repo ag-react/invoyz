@@ -43,12 +43,12 @@ function InvoiceList(props: ComponentProps) {
   }, [statusFilters])
 
   return (
-    <div className="h-full flex flex-col space-y-16">
+    <div className="h-full flex flex-col space-y-8 md:space-y-16">
       <div>
         <InvoiceListHeader invoiceCount={filteredInvoices.length} onFilterChange={onFilterChange}/>
       </div>
 
-      <div className="flex-1 space-y-4">
+      <div className="flex-1 space-y-4 pb-6">
         {
           filteredInvoices &&
           filteredInvoices.length > 0

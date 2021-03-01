@@ -45,10 +45,15 @@ function InvoiceListFilter(props: ComponentProps) {
     <div className="flex flex-col">
       <div className="space-x-4 flex items-center cursor-pointer hover:opacity-75"
         onClick={() => setShowItems(!showItems)}>
-        <span className="text-h4 font-bold text-grayish-dark">
-          Filter by status
-        </span>
-        <div className={`transition-transform transform ${showItems ? 'rotate-180' : 'rotate-0'}`}>
+        <div className="text-h4 font-bold text-grayish-dark">
+          <span className="hidden md:block">
+            Filter by status
+          </span>
+          <span className="block md:hidden">
+            Filter
+          </span>
+        </div>
+        <div className={`flex-none transition-transform transform ${showItems ? 'rotate-180' : 'rotate-0'}`}>
           <Image
             src="/assets/icon-arrow-down.svg"
             alt="Arrow up and down"

@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
           <MenuView />
         </section>
 
-        <section className="pl-0 pt-20 lg:pl-20 lg:pt-0 overflow-y-auto w-full">
+        <section className="pl-0 mt-20 lg:pl-20 lg:mt-0 overflow-y-auto w-full">
           <Component {...pageProps} />
         </section>
       </div>

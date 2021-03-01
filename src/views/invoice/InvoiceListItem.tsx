@@ -13,7 +13,7 @@ interface ComponentProps {
 
 function InvoiceListItem(props: ComponentProps) {
   return (
-    <div className="rounded-lg w-full grid grid-cols-list-banner auto-rows-auto bg-white gap-x-6 gap-y-6 p-6 px-6 md:py-4 md:grid-cols-list-big ">
+    <div className="rounded-lg w-full grid grid-cols-list-banner auto-rows-auto bg-white cursor-pointer transition duration-150 ease-in-out border border-transparent hover:border-indigo gap-x-6 gap-y-6 p-6 px-6 md:py-4 md:grid-cols-list-big">
       <div className="col-start-1 col-end-1 md:col-start-1 md:col-end-2 font-bold flex items-center">
         <span className="text-body1 text-grayish-sky">#</span><span className="text-body1 text-grayish-dark">{ props.invoice.id }</span>
       </div>
@@ -32,7 +32,7 @@ function InvoiceListItem(props: ComponentProps) {
           { '£' + props.invoice.total.toLocaleString('en-US', { minimumFractionDigits: 2 }) }
         </span>
       </div>
-      <div className="col-start-2 col-end-3 row-start-2 row-end-3 md:row-span-1 md:col-start-5 md:col-end-6 flex items-center">
+      <div className="col-start-2 col-end-3 row-start-2 row-end-3 md:row-span-1 md:col-start-5 md:col-end-6 flex items-center justify-end md:justify-start">
         <InvoiceStatus status={props.invoice.status}/>
       </div>
       <div className="hidden md:col-start-6 md:col-end-7 md:flex items-center justify-end">

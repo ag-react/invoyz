@@ -11,7 +11,7 @@ function InvoiceStatus(props: ComponentProps) {
     <>
       {
         props.status === InvoiceStatusEnum.DRAFT &&
-        <div className={`rounded-md w-full h-10 capitalize text-h4 font-bold flex items-center justify-center space-x-2 bg-dim-faded text-dim`}>
+        <div className={`rounded-md w-28 h-10 capitalize text-h4 font-bold flex items-center justify-center space-x-2 bg-dim-faded text-dim`}>
           <div className={`rounded-full w-2 h-2 bg-dim`}></div>
           <span>
             { props.status }
@@ -21,7 +21,7 @@ function InvoiceStatus(props: ComponentProps) {
 
       {
         props.status === InvoiceStatusEnum.PENDING &&
-        <div className={`rounded-md w-full h-10 capitalize text-h4 font-bold flex items-center justify-center space-x-2 bg-yellow-faded text-yellow`}>
+        <div className={`rounded-md w-28 h-10 capitalize text-h4 font-bold flex items-center justify-center space-x-2 bg-yellow-faded text-yellow`}>
           <div className={`rounded-full w-2 h-2 bg-yellow`}></div>
           <span>
             { props.status }
@@ -31,7 +31,7 @@ function InvoiceStatus(props: ComponentProps) {
 
       {
         props.status === InvoiceStatusEnum.PAID &&
-        <div className={`rounded-md w-full h-10 capitalize text-h4 font-bold flex items-center justify-center space-x-2 bg-green-faded text-green`}>
+        <div className={`rounded-md w-28 h-10 capitalize text-h4 font-bold flex items-center justify-center space-x-2 bg-green-faded text-green`}>
           <div className={`rounded-full w-2 h-2 bg-green`}></div>
           <span>
             { props.status }
