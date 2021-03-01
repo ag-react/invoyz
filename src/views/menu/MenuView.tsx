@@ -4,7 +4,7 @@ import Image from 'next/image'
 function MenuView() {
   return (
     <div className="w-full h-full flex flex-row justify-between bg-indigo-dark lg:flex-col lg:rounded-tr-2xl lg:rounded-br-2xl">
-      <div className="h-full w-20 lg:h-20 lg:w-full">
+      <div className="h-full w-18 md:w-20 lg:h-20 lg:w-full">
         <Image
           src="/logo.png"
           alt="Logo"
@@ -13,7 +13,7 @@ function MenuView() {
       </div>
 
       <div className="flex flex-row lg:flex-col">
-        <div className="h-full w-20 lg:h-20 lg:w-full flex items-center justify-center">
+        <div className="h-full w-18 md:w-20 lg:h-20 lg:w-full flex items-center justify-center">
           <Image
             src="/assets/icon-moon.svg"
             alt="Profile avatar"
@@ -22,7 +22,7 @@ function MenuView() {
             className="rounded-full"/>
         </div>
         <div className="w-px lg:w-full h-full lg:h-px bg-divider"></div>
-        <div className="h-full w-20 lg:h-20 lg:w-full flex items-center justify-center">
+        <div className="h-full w-18 md:w-20 lg:h-20 lg:w-full flex items-center justify-center">
           <Image
             src="/assets/image-avatar.jpg"
             alt="Profile avatar"

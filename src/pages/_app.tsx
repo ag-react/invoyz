@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
 
     <StoreProvider >
       <div className="relative flex h-screen bg-light">
-        <section className="absolute left-0 top-0 right-0 lg:right-auto bottom-auto lg:bottom-0 h-20 lg:h-auto w-full lg:w-20">
+        <section className="absolute left-0 top-0 right-0 lg:right-auto bottom-auto lg:bottom-0 h-18 md:h-20 lg:h-auto w-full lg:w-20">
           <MenuView />
         </section>
 
