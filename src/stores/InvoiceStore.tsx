@@ -30,7 +30,7 @@ export const createInvoiceStore = () => {
     deleteInvoice(id: string) {
       _.remove(this.invoices, (invoice: TInvoice) => invoice.id === id);
     },
-    get currentInvoices() {
+    get currentInvoices(): TInvoice[] {
       return toJS(this.invoices);
     }
   };

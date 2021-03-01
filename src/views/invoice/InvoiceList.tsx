@@ -3,23 +3,25 @@ import React from 'react';
 import _ from 'lodash';
 
 import { TInvoice } from '../../types/InvoiceTypes';
-import InvoiceListHeader from './InvoiceListHeader';
 
-import InvoiceLIstItem from './InvoiceLIstItem';
+import InvoiceListHeader from './InvoiceListHeader';
+import InvoiceListItem from './InvoiceListItem';
+import InvoiceListEmpty from './InvoiceListEmpty';
 
 interface ComponentProps {
   invoices: TInvoice[]
 }
 
 function InvoiceList(props: ComponentProps) {
-  const [statusFilters, setstatusFilters] = React.useState([]);
-  const [filteredInvoices, setfilteredInvoices] = React.useState<TInvoice[]>([]);
+  const [statusFilters, setStatusFilters] = React.useState([]);
+  const [filteredInvoices, setFilteredInvoices] = React.useState<TInvoice[]>([]);
 
   const onFilterChange = (statuses: string[]) => {
-    setstatusFilters(statuses);
+    setStatusFilters(statuses);
   };
 
-  React.useEffect(() => {
+  const updateFilteredList = () => {
+    console.log(props.invoices.length);
     const invoices = _.chain(props.invoices)
       .filter(invoice => {
         if (statusFilters.length > 0) {
@@ -30,20 +32,31 @@ function InvoiceList(props: ComponentProps) {
       })
       .value();
 
-      setfilteredInvoices(invoices);
+      setFilteredInvoices(invoices);
+  };
+
+  React.useEffect(() => {
+    updateFilteredList();
+  }, [props.invoices])
+
+  React.useEffect(() => {
+    updateFilteredList();
   }, [statusFilters])
 
   return (
-    <div className="space-y-16">
+    <div className="h-full flex flex-col space-y-16">
       <div>
         <InvoiceListHeader invoiceCount={filteredInvoices.length} onFilterChange={onFilterChange}/>
       </div>
 
-      <div className="space-y-4">
+      <div className="flex-1 space-y-4">
         {
-          _.map(filteredInvoices, (invoice) => (
-            <InvoiceLIstItem key={invoice.id} invoice={invoice} />
+          filteredInvoices &&
+          filteredInvoices.length > 0
+          ? _.map(filteredInvoices, (invoice) => (
+            <InvoiceListItem key={invoice.id} invoice={invoice} />
           ))
+          : <InvoiceListEmpty />
         }
       </div>
     </div>

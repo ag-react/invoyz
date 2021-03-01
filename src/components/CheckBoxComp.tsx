@@ -27,7 +27,7 @@ function CheckBoxComp(props: ComponentProps) {
           </div>
         : <div className="w-4 h-4 bg-grayish rounded-sm border-2 border-transparent group-hover:border-indigo"></div>
       }
-      <span className="text-h4 font-bold indigo-darker">
+      <span className="text-h4 font-bold indigo-darker capitalize">
         { props.label }
       </span>
     </div>

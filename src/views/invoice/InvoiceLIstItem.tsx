@@ -11,7 +11,7 @@ interface ComponentProps {
   invoice: TInvoice
 }
 
-function InvoiceLIstItem(props: ComponentProps) {
+function InvoiceListItem(props: ComponentProps) {
   return (
     <div className="rounded-lg w-full grid grid-cols-list-banner auto-rows-auto bg-white gap-x-6 gap-y-6 p-6 px-6 md:py-4 md:grid-cols-list-big ">
       <div className="col-start-1 col-end-1 md:col-start-1 md:col-end-2 font-bold flex items-center">
@@ -46,4 +46,4 @@ function InvoiceLIstItem(props: ComponentProps) {
   )
 }
 
-export default React.memo(InvoiceLIstItem);
+export default React.memo(InvoiceListItem);
