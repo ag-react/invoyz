@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { TInvoice } from '../../types/InvoiceTypes';
 
 import InvoiceListHeader from './InvoiceListHeader';
-import InvoiceListItem from './InvoiceListItem2';
+import InvoiceListItem from './InvoiceListItem';
 import InvoiceListEmpty from './InvoiceListEmpty';
 
 interface ComponentProps {
