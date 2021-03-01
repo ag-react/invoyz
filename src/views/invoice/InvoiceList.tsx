@@ -21,7 +21,6 @@ function InvoiceList(props: ComponentProps) {
   };
 
   const updateFilteredList = () => {
-    console.log(props.invoices.length);
     const invoices = _.chain(props.invoices)
       .filter(invoice => {
         if (statusFilters.length > 0) {
