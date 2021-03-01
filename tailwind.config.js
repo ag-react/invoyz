@@ -74,7 +74,10 @@ module.exports = {
       gridTemplateColumns: {
         'list-big': '80px 120px 1fr 100px 105px 15px',
         'list-banner': 'auto 1fr'
-      }
+      },
+      width: {
+        '160': '40rem'
+      },
     },
   },
   variants: {

@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 
 import AddIcon from '../../components/icons/AddIcon';
 import ButtonComp from '../../components/ButtonComp';
@@ -8,13 +7,11 @@ import InvoiceListFilter from './InvoiceListFilter';
 
 interface ComponentProps {
   invoiceCount: number,
-  onFilterChange: (checked: string[]) => void
+  onFilterChange: (checked: string[]) => void,
+  onAddInvoice: () => void;
 }
 
 function InvoiceListHeader(props: ComponentProps) {
-  const onAddInvoice = React.useCallback(() => {
-    // TODO: Navigate to add invoice page
-  }, []);
 
   return (
     <div className="flex items-center justify-between">
@@ -56,7 +53,7 @@ function InvoiceListHeader(props: ComponentProps) {
             </div>
           }
           className="group bg-indigo hover:bg-indigo-faded"
-          onClick={onAddInvoice}
+          onClick={props.onAddInvoice}
         />
       </div>
     </div>

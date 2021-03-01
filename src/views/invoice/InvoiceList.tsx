@@ -9,7 +9,8 @@ import InvoiceListItem from './InvoiceListItem';
 import InvoiceListEmpty from './InvoiceListEmpty';
 
 interface ComponentProps {
-  invoices: TInvoice[]
+  invoices: TInvoice[],
+  onAddInvoice: () => void;
 }
 
 function InvoiceList(props: ComponentProps) {
@@ -45,7 +46,10 @@ function InvoiceList(props: ComponentProps) {
   return (
     <div className="h-full flex flex-col space-y-8 md:space-y-16">
       <div>
-        <InvoiceListHeader invoiceCount={filteredInvoices.length} onFilterChange={onFilterChange}/>
+        <InvoiceListHeader
+          invoiceCount={filteredInvoices.length}
+          onFilterChange={onFilterChange}
+          onAddInvoice={props.onAddInvoice}/>
       </div>
 
       <div className="flex-1 space-y-4 pb-6">
