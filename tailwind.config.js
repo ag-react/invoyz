@@ -78,7 +78,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      fill: ['hover', 'focus', 'group-hover'],
+    },
   },
   plugins: [],
 }
