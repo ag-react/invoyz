@@ -5,18 +5,23 @@ import { AsyncTrunk } from 'mobx-sync';
 import { kStorageKey } from "../config/storeConfig";
 
 import { createInvoiceStore, TInvoiceStore } from "../stores/InvoiceStore";
+import { createThemeStore, TThemeStore } from "../stores/themeStore";
+
 import { InvoicesMock } from "../mocks/InvoiceMock";
 
 export type TStore = {
+  themeStore: TThemeStore,
   invoiceStore: TInvoiceStore,
 }
 
 export const storeContext = createContext<TStore | null>(null);
 
 export const StoreProvider = ({ children }: any) => {
+  const themeStore = useLocalObservable(createThemeStore);
   const invoiceStore = useLocalObservable(createInvoiceStore);
 
   const stores = {
+    themeStore,
     invoiceStore,
   }
 
@@ -33,6 +38,16 @@ export const StoreProvider = ({ children }: any) => {
       if (invoices && invoices.length === 0) {
         invoiceStore.initInvoices(InvoicesMock);
       }
+
+      let currentTheme = themeStore.theme;
+
+      if (!currentTheme) {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          currentTheme = 'dark';
+        }
+      }
+
+      themeStore.updateTheme(currentTheme || 'light');
     });
   }
 

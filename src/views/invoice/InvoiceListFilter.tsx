@@ -45,7 +45,7 @@ function InvoiceListFilter(props: ComponentProps) {
     <div className="flex flex-col">
       <div className="space-x-4 flex items-center cursor-pointer hover:opacity-75"
         onClick={() => setShowItems(!showItems)}>
-        <div className="text-h4 font-bold text-grayish-dark">
+        <div className="text-h4 font-bold text-grayish-dark dark:text-white">
           <span className="hidden md:block">
             Filter by status
           </span>
@@ -65,7 +65,7 @@ function InvoiceListFilter(props: ComponentProps) {
       <div className="relative">
         {
           showItems &&
-          <div className="absolute transition-all top-4 -left-10 -right-10 bg-white rounded-lg p-6 space-y-4 z-10 shadow-md">
+          <div className="absolute transition-all top-4 -left-10 -right-10 bg-white dark:bg-indigo-dark rounded-lg p-6 space-y-4 z-10 shadow-md">
             <CheckBoxComp
               checked={checkboxes.draft}
               label={InvoiceStatusEnum.DRAFT}

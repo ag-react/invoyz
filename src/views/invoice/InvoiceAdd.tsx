@@ -20,7 +20,6 @@ function InvoiceAdd(props: ComponentProps) {
   const formRef = React.useRef<FormikProps<TInvoice>>(null);
 
   const { invoiceStore } = useStores();
-  // const [status, setStatus] = React.useState<InvoiceStatusEnum>(InvoiceStatusEnum.DRAFT);
 
   const handleSubmit = (
     status?: InvoiceStatusEnum
@@ -68,14 +67,14 @@ function InvoiceAdd(props: ComponentProps) {
         />
 
         <div>
-          <span className="text-h4 text-grayish-dark font-bold">
+          <span className="text-h4 text-grayish-dark dark:text-white font-bold">
             Go back
           </span>
         </div>
       </div>
 
       <div className="flex-none px-6 md:px-14">
-        <div className="text-subtitle font-bold text-grayish-dark">
+        <div className="text-subtitle font-bold text-grayish-dark dark:text-white">
           <span>New Invoice</span>
         </div>
       </div>
@@ -85,8 +84,8 @@ function InvoiceAdd(props: ComponentProps) {
           onSubmit={onSubmit}
         />
       </div>
-      <div className="flex-none px-6 md:px-14 bg-white">
-        <div className="h-24 md:h-28 flex items-center justify-between">
+      <div className="flex-none px-6 md:px-14 bg-white dark:bg-dark">
+        <div className="h-24 md:h-28 flex items-center justify-between space-x-2">
           <div>
             <ButtonComp
               label={
@@ -104,13 +103,13 @@ function InvoiceAdd(props: ComponentProps) {
           <div className="flex items-center space-x-2">
             <ButtonComp
               label={
-                <div className="text-h4 font-bold text-grayish-slick">
+                <div className="text-h4 font-bold text-grayish-slick dark:text-grayish">
                   <span>
                     Save as Draft
                   </span>
                 </div>
               }
-              className="group bg-dim hover:bg-grayish-dark"
+              className="group bg-dim hover:bg-grayish-dark dark:hover:bg-indigo-darker"
               onClick={() => {
                 handleSubmit(InvoiceStatusEnum.DRAFT);
               }}

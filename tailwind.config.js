@@ -2,7 +2,7 @@ module.exports = {
   purge: [
     './src/**/*.{js,ts,jsx,tsx}',
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     fontFamily: {
       sans: ['Spartan'],
@@ -52,6 +52,7 @@ module.exports = {
         'indigo-dark': '#252945',
         'indigo-darker': '#1E2139',
         'grayish': '#DFE3FA',
+        'grayish-faded': '#DFE3FA10',
         'grayish-light': '#F9FAFE',
         'grayish-slick': '#888EB0',
         'grayish-sky': '#7E88C3',

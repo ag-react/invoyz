@@ -92,6 +92,29 @@
         border-radius: 0 !important;
         background-color: transparent !important;
         opacity: 75 !important;
+        color: #9277FF !important;
+      }
+    }
+  }
+}
+
+.dark {
+  .react-datepicker {
+    background-color: #252945 !important;
+
+    .react-datepicker__header {
+      .react-datepicker__current-month {
+        color: #DFE3FA;
+      }
+    }
+
+    .react-datepicker__week {
+      .react-datepicker__day {
+        color: #DFE3FA;
+
+        &:hover {
+          color: #9277FF !important;
+        }
       }
     }
   }

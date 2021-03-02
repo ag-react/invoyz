@@ -10,15 +10,15 @@ interface ComponentProps {
 
 function InvoiceConfirmDelete(props: ComponentProps) {
   return (
-    <div className="rounded-lg p-12 bg-white flex flex-col space-y-4 max-w-md">
+    <div className="rounded-lg p-8 md:p-12 bg-white dark:bg-indigo-darker flex flex-col space-y-4 w-4/5 md:max-w-md">
       <div>
-        <span className="text-h2 text-grayish-dark font-bold">
+        <span className="text-h2 text-grayish-dark dark:text-white font-bold">
           Confirm Deletion
         </span>
       </div>
 
       <div>
-        <span className="text-body1 text-grayish-slick font-medium">
+        <span className="text-body1 text-grayish-slick dark:text-grayish font-medium">
           {`Are you sure you want to delete invoice #${props.id}? This action cannot be undone.`}
         </span>
       </div>
@@ -26,13 +26,13 @@ function InvoiceConfirmDelete(props: ComponentProps) {
       <div className="flex justify-end space-x-2">
         <ButtonComp
           label={
-            <div className="text-h4 font-bold text-grayish-sky">
+            <div className="text-h4 font-bold text-grayish-sky dark:text-grayish">
               <span>
                 Cancel
               </span>
             </div>
           }
-          className="group bg-grayish-light hover:bg-grayish"
+          className="group bg-grayish-light dark:bg-indigo-dark hover:bg-grayish dark:hover:bg-indigo-darker"
           onClick={props.onCancel}
         />
 

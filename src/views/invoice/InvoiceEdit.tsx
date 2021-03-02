@@ -5,7 +5,6 @@ import { toJS } from 'mobx';
 import _ from 'lodash';
 import { FormikProps } from 'formik';
 
-import { generateRandomId } from '../../utils/generatorUtil';
 import { InvoiceStatusEnum, TInvoice } from '../../types/InvoiceTypes';
 
 import ButtonComp from '../../components/ButtonComp';
@@ -83,14 +82,14 @@ function InvoiceEdit(props: ComponentProps) {
         />
 
         <div>
-          <span className="text-h4 text-grayish-dark font-bold">
+          <span className="text-h4 text-grayish-dark dark:text-white font-bold">
             Go back
           </span>
         </div>
       </div>
 
       <div className="flex-none px-6 md:px-14">
-        <div className="text-subtitle font-bold text-grayish-dark">
+        <div className="text-subtitle font-bold text-grayish-dark dark:text-white">
           <span>
             {`Edit #${props.invoice.id}`}
           </span>
@@ -102,18 +101,18 @@ function InvoiceEdit(props: ComponentProps) {
           onSubmit={onSubmit}
         />
       </div>
-      <div className="flex-none px-6 md:px-14 bg-white">
-        <div className="h-24 md:h-28 flex items-center justify-between">
+      <div className="flex-none px-6 md:px-14 bg-white dark:bg-dark">
+        <div className="h-24 md:h-28 flex items-center justify-between space-x-2">
           <div>
             <ButtonComp
               label={
-                <div className="text-h4 font-bold text-grayish-sky">
+                <div className="text-h4 font-bold text-grayish-sky dark:text-grayish">
                   <span>
                     Cancel
                   </span>
                 </div>
               }
-              className="group bg-grayish-light hover:bg-grayish"
+              className="group bg-grayish-light dark:bg-indigo-dark hover:bg-grayish dark:hover:bg-indigo-darker"
               onClick={props.onClose}
             />
           </div>
@@ -121,13 +120,13 @@ function InvoiceEdit(props: ComponentProps) {
           <div className="flex items-center space-x-2">
             <ButtonComp
               label={
-                <div className="text-h4 font-bold text-grayish-slick">
+                <div className="text-h4 font-bold text-grayish-slick dark:text-grayish">
                   <span>
                     Save Changes
                   </span>
                 </div>
               }
-              className="group bg-dim hover:bg-grayish-dark"
+              className="group bg-dim hover:bg-grayish-dark dark:hover:bg-indigo-darker"
               onClick={() => {
                 handleSubmit();
               }}

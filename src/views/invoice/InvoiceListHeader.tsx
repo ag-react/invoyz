@@ -17,11 +17,11 @@ function InvoiceListHeader(props: ComponentProps) {
     <div className="flex items-center justify-between">
       <div className="space-y-2">
         <div>
-          <span className="text-h2 font-bold text-grayish-dark md:text-h1">
+          <span className="text-h2 font-bold text-grayish-dark md:text-h1 dark:text-white">
             Invoices
           </span>
         </div>
-        <div className="text-grayish-slick text-body1 font-medium">
+        <div className="text-grayish-slick text-body1 font-medium dark:text-grayish-slick">
           <span className="hidden md:block">
             There are {props.invoiceCount} total invoices
           </span>

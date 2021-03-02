@@ -44,7 +44,7 @@ function DropdownComp(props: ComponentProps) {
         <div className="flex items-end justify-between">
           {
             props.label &&
-            <span className={`${props.error ? 'text-redish' : 'text-grayish-sky'} text-body1 font-medium`}>
+            <span className={`${props.error ? 'text-redish' : 'text-grayish-sky dark:text-grayish'} text-body1 font-medium`}>
               { props.label }
             </span>
           }
@@ -52,7 +52,7 @@ function DropdownComp(props: ComponentProps) {
       }
 
       <div
-        className={`relative h-12 w-full rounded px-5 flex items-center justify-between text-grayish-dark font-bold text-h4 bg-transparent border ${props.error ? 'border-redish hover:border-redish active:border focus:border-redish' : 'border-grayish hover:border-indigo-faded active:border focus:border-indigo-faded'} focus:outline-none`}
+        className={`relative h-12 w-full rounded px-5 flex items-center justify-between text-grayish-dark dark:text-white font-bold text-h4 bg-transparent dark:bg-indigo-darker border ${props.error ? 'border-redish hover:border-redish active:border focus:border-redish' : 'border-grayish dark:border-indigo-dark hover:border-indigo-faded active:border focus:border-indigo-faded dark:hover:border-indigo dark:focus:border-indigo'} focus:outline-none`}
         onClick={toggleShowItems}>
         <span>
           { value }
@@ -66,15 +66,15 @@ function DropdownComp(props: ComponentProps) {
 
       {
         showItems &&
-        <div className="absolute left-0 right-0 top-18 shadow-md rounded-md bg-white">
-          <div className="h-full flex flex-col divide-y divide-grayish">
+        <div className="absolute left-0 right-0 top-18 shadow-md rounded-md bg-white dark:bg-indigo-dark">
+          <div className="h-full flex flex-col divide-y divide-grayish dark:divide-indigo-darker">
             {
               _.map(props.items, (item, i) => (
                 <div
                   key={item.key}
-                  className="px-6 h-12 flex items-center cursor-pointer hover:bg-grayish-light"
+                  className="px-6 h-12 flex items-center cursor-pointer group"
                   onClick={() => onItemClick(item)}>
-                  <span className={`text-h4  font-bold ${item.key === props.value ? 'text-indigo' : 'text-grayish-dark' }`}>
+                  <span className={`text-h4  font-bold group-hover:text-indigo dark:group-hover:text-indigo-faded ${item.key === props.value ? 'text-indigo dark:text-indigo-faded' : 'text-grayish-dark dark:text-grayish' }`}>
                     {
                       item.value
                     }

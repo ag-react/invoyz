@@ -14,13 +14,13 @@ function InvoiceListEmpty() {
           height="200px"/>
 
         <div className="mt-16 text-center">
-          <span className="text-h2 font-bold text-grayish-dark">
+          <span className="text-h2 font-bold text-grayish-dark dark:text-white">
             There is nothing here
           </span>
         </div>
 
         <div className="mt-6 text-center">
-          <span className="text-body1 text-grayish-slick">
+          <span className="text-body1 text-grayish-slick dark:text-grayish">
             Create a new invoice by clicking the <strong>New Invoice</strong> button and get started
           </span>
         </div>

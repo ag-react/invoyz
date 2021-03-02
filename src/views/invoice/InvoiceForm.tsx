@@ -466,12 +466,12 @@ function InvoiceForm(props: ComponentProps) {
                               </div>
                               <div className="flex-1 space-y-10px sm:flex-none">
                                 {
-                                  <span className={`flex-none flex items-end w-18 text-grayish-sky text-body1 font-medium ${index > 0 ? 'sm:hidden' : ''}`}>
+                                  <span className={`flex-none flex items-end w-18 text-grayish-sky dark:text-grayish text-body1 font-medium ${index > 0 ? 'sm:hidden' : ''}`}>
                                     Total
                                   </span>
                                 }
                                 <div className="flex items-center h-12">
-                                  <span className="flex-none w-18 text-grayish-slick text-h4 font-bold">
+                                  <span className="flex-none w-18 text-grayish-slick dark:text-grayish text-h4 font-bold">
                                     { (item.quantity * item.price).toLocaleString('en-US', { minimumFractionDigits: 2 }) }
                                   </span>
                                 </div>
@@ -490,13 +490,13 @@ function InvoiceForm(props: ComponentProps) {
                       <div>
                         <ButtonComp
                           label={
-                            <div className="text-h4 font-bold text-grayish-sky">
+                            <div className="text-h4 font-bold text-grayish-sky dark:text-grayish">
                               <span>
                                 + Add New Item
                               </span>
                             </div>
                           }
-                          className="group bg-grayish-light hover:bg-grayish"
+                          className="group bg-grayish-light dark:bg-indigo-dark hover:bg-grayish dark:hover:bg-indigo-darker"
                           onClick={() => onAddClick()}
                         />
                       </div>
