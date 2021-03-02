@@ -160,11 +160,11 @@ function InvoiceDetailPage() {
                     </div>
                   </div>
 
-                  <div className="mt-8 md:mt-6 flex flex-row justify-start flex-wrap md:justify-between">
-                    <div className="flex flex-col justify-between">
+                  <div className="mt-8 md:mt-6 grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-x-3 gap-y-8">
+                    <div className="col-start-1 col-end-4 row-start-1 row-end-2 sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-2 md:col-start-1 md:col-end-2 md:row-start-1 md:row-end-2 lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 flex flex-col justify-between space-y-3">
                       <div className="flex flex-col space-y-3">
                         <span className="text-body1 text-grayish-sky font-medium">
-                          invoiceStore.currentInvoice Date
+                          Invoice Date
                         </span>
                         <span className="text-h3 text-grayish-dark font-bold">
                           { invoiceStore.currentInvoice.createdOn ? format(new Date(invoiceStore.currentInvoice.createdOn), 'dd MMM yyyy') : '-' }
@@ -181,8 +181,8 @@ function InvoiceDetailPage() {
                       </div>
                     </div>
 
-                    <div className="flex-1 flex flex-col space-y-2 ml-10 md:flex-none">
-                      <div className="flex flex-col space-y-3">
+                    <div className="col-start-1 col-end-4 row-start-2 row-end-3 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2 md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 flex flex-col space-y-2 md:flex-none">
+                      <div className="flex flex-col space-y-3 space-y-8break-all">
                         <span className="text-body1 text-grayish-sky font-medium">
                           Bill To
                         </span>
@@ -206,8 +206,8 @@ function InvoiceDetailPage() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col justify-between w-full mt-8 md:w-auto md:mt-0">
-                      <div className="flex flex-col space-y-3">
+                    <div className="col-start-1 col-end-4 row-start-3 row-end-4 sm:col-start-1 sm:col-end-2 sm:row-start-2 sm:row-end-3 md:col-start-1 md:col-end-3 md:row-start-2 md:row-end-3 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 flex flex-col justify-between w-full md:w-auto md:mt-0">
+                      <div className="flex flex-col space-y-3 break-all">
                         <span className="text-body1 text-grayish-sky font-medium">
                           Sent To
                         </span>
