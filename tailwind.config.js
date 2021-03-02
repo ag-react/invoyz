@@ -84,7 +84,7 @@ module.exports = {
         '18': '4.5rem'
       },
       gridTemplateColumns: {
-        'list-big': '80px 120px 1fr 100px 105px 15px',
+        'list-big': '80px 120px 1fr 140px 105px 15px',
         'list-banner': 'auto 1fr',
       },
       width: {

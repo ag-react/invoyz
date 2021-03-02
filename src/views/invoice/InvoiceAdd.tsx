@@ -19,16 +19,22 @@ function InvoiceAdd(props: ComponentProps) {
   const formRef = React.useRef<FormikProps<TInvoice>>(null);
 
   const { invoiceStore } = useStores();
+  const [status, setStatus] = React.useState<InvoiceStatusEnum>(InvoiceStatusEnum.DRAFT);
 
   const handleSubmit = () => {
-    formRef.current.handleSubmit();
+
+    if (status === InvoiceStatusEnum.DRAFT) {
+      onSubmit(formRef.current.values);
+    } else {
+      formRef.current.handleSubmit();
+    }
   }
 
   const onSubmit = (values: TInvoice) => {
-    values.status = InvoiceStatusEnum.DRAFT;
+    values.status = status;
     values.createdOn = new Date();
     values.id = generateRandomId(2, 4).toUpperCase();
-    values.paymentDue = new Date(values.paymentDue);
+    values.paymentDue = values.paymentDue;
 
     values.items = _.map(values.items, (item) => {
       item.quantity = +item.quantity;
@@ -84,7 +90,10 @@ function InvoiceAdd(props: ComponentProps) {
                 </div>
               }
               className="group bg-dim hover:bg-grayish-dark"
-              onClick={handleSubmit}
+              onClick={() => {
+                setStatus(InvoiceStatusEnum.DRAFT);
+                handleSubmit();
+              }}
             />
             <ButtonComp
               label={
@@ -95,7 +104,10 @@ function InvoiceAdd(props: ComponentProps) {
                 </div>
               }
               className="group bg-indigo hover:bg-indigo-faded"
-              onClick={handleSubmit}
+              onClick={() => {
+                setStatus(InvoiceStatusEnum.PENDING);
+                handleSubmit();
+              }}
             />
           </div>
         </div>
