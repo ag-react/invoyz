@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   return <>
     <Head>
       <title>Invoyz</title>
-      <meta name="description" content="An invoice app using Nextjs" />
+      <meta name="description" content="A mobile responsive invoice web application with a light and dark theme support" />
       <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
     </Head>
 
