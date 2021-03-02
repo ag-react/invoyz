@@ -46,20 +46,20 @@ function InvoiceAdd(props: ComponentProps) {
   }
 
   return (
-    <div className="h-full flex flex-col pt-10">
-      <div className="flex-none px-14">
+    <div className="h-full flex flex-col pt-8 md:pt-10">
+      <div className="flex-none px-6 md:px-14">
         <div className="text-subtitle font-bold text-grayish-dark">
           <span>New Invoice</span>
         </div>
       </div>
-      <div className="px-14 mt-12 pb-12 flex-1 overflow-y-auto">
+      <div className="px-6 md:px-14 mt-6 md:mt-12 pb-8 flex-1 overflow-y-auto">
         <InvoiceForm
           innerRef={formRef}
           onSubmit={onSubmit}
         />
       </div>
-      <div className="flex-none px-14 bg-white ">
-        <div className="h-28 flex items-center justify-between">
+      <div className="flex-none px-6 md:px-14 bg-white">
+        <div className="h-24 md:h-28 flex items-center justify-between">
           <div>
             <ButtonComp
               label={

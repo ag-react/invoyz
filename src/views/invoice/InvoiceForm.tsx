@@ -182,7 +182,7 @@ function InvoiceForm(props: ComponentProps) {
                 />
               </div>
 
-              <div className="flex items-center justify-evenly space-x-6">
+              <div className="grid grid-cols-2 auto-rows-auto gap-x-6 gap-y-6 sm:grid-cols-3">
                 <InputComp
                   label={'City'}
                   name="senderAddress.city"
@@ -194,7 +194,10 @@ function InvoiceForm(props: ComponentProps) {
                       : ''
                   }
                   onChange={handleChange}
-                  onBlur={handleBlur}/>
+                  onBlur={handleBlur}
+                  className="col-start-1 col-end-2 row-start-1 row-end-2"
+                />
+
                 <InputComp
                   label={'Post Code'}
                   name="senderAddress.postCode"
@@ -206,7 +209,10 @@ function InvoiceForm(props: ComponentProps) {
                       : ''
                   }
                   onChange={handleChange}
-                  onBlur={handleBlur}/>
+                  onBlur={handleBlur}
+                  className="col-start-2 col-end-3 row-start-1 row-end-2"
+                />
+
                 <InputComp
                   label={'Country'}
                   name="senderAddress.country"
@@ -218,11 +224,13 @@ function InvoiceForm(props: ComponentProps) {
                       : ''
                   }
                   onChange={handleChange}
-                  onBlur={handleBlur}/>
+                  onBlur={handleBlur}
+                  className="row-start-2 row-end-3 col-start-1 col-end-3 sm:col-start-3 sm:col-end-4 sm:row-start-1 sm:row-end-2"
+                />
               </div>
             </div>
 
-            <div className="mt-12 space-y-6">
+            <div className="mt-10 sm:mt-12 space-y-6">
               <div>
                 <span className="text-indigo text-h4 font-bold">
                   Bill To
@@ -275,8 +283,9 @@ function InvoiceForm(props: ComponentProps) {
                   onBlur={handleBlur}/>
               </div>
 
-              <div className="flex items-center justify-evenly space-x-6">
-                <InputComp label={'City'}
+              <div className="grid grid-cols-2 auto-rows-auto gap-x-6 gap-y-6 sm:grid-cols-3">
+                <InputComp
+                  label={'City'}
                   name="clientAddress.city"
                   id="clientAddress.city"
                   value={values.clientAddress.city}
@@ -286,8 +295,12 @@ function InvoiceForm(props: ComponentProps) {
                       : ''
                   }
                   onChange={handleChange}
-                  onBlur={handleBlur}/>
-                <InputComp label={'Post Code'}
+                  onBlur={handleBlur}
+                  className="col-start-1 col-end-2 row-start-1 row-end-2"
+                />
+
+                <InputComp
+                  label={'Post Code'}
                   name="clientAddress.postCode"
                   id="clientAddress.postCode"
                   value={values.clientAddress.postCode}
@@ -297,7 +310,10 @@ function InvoiceForm(props: ComponentProps) {
                       : ''
                   }
                   onChange={handleChange}
-                  onBlur={handleBlur}/>
+                  onBlur={handleBlur}
+                  className="col-start-2 col-end-3 row-start-1 row-end-2"
+                />
+
                 <InputComp
                   label={'Country'}
                   name="clientAddress.country"
@@ -309,12 +325,14 @@ function InvoiceForm(props: ComponentProps) {
                       : ''
                   }
                   onChange={handleChange}
-                  onBlur={handleBlur}/>
+                  onBlur={handleBlur}
+                  className="row-start-2 row-end-3 col-start-1 col-end-3 sm:col-start-3 sm:col-end-4 sm:row-start-1 sm:row-end-2"
+                />
               </div>
             </div>
 
             <div className="mt-12 space-y-6">
-              <div className="flex items-center justify-evenly space-x-6">
+              <div className="flex flex-col items-center justify-evenly space-y-6 sm:flex-row sm:space-x-6 sm:space-y-0">
                 <DatePickerComp
                   label={'Invoice Date'}
                   name="paymentDue"
@@ -344,17 +362,6 @@ function InvoiceForm(props: ComponentProps) {
                   }
                   onBlur={() => setTouched({paymentTerms: true}, true) }
                 />
-                {/* <InputComp
-                  label={'Payment Terms'}
-                  name="paymentTerms"
-                  id="paymentTerms"
-                  error={
-                    errors.paymentTerms && touched.paymentTerms
-                      ? errors.paymentTerms
-                      : ''
-                  }
-                  onChange={handleChange}
-                  onBlur={handleBlur}/> */}
               </div>
 
               <div>
@@ -373,23 +380,13 @@ function InvoiceForm(props: ComponentProps) {
               </div>
             </div>
 
-            <div className="mt-8 space-y-4">
-              <div className="flex items-center space-x-6">
-                <span className="flex-1 text-grayish-sky text-body1 font-medium">
-                  Item Name
-                </span>
-                <span className="flex-none w-18 text-grayish-sky text-body1 font-medium">
-                  Qty.
-                </span>
-                <span className="flex-none w-24 text-grayish-sky text-body1 font-medium">
-                  Price
-                </span>
-                <span className="flex-none w-18 text-grayish-sky text-body1 font-medium">
-                  Total
-                </span>
-                <span className="flex-none w-3"></span>
-              </div>
+            <div className="mt-16 sm:mt-8 mb-8 sm:mb-4">
+              <span className="text-h3 font-bold text-grayish-slick">
+                Item List
+              </span>
+            </div>
 
+            <div className="space-y-12 sm:space-y-4">
               <FieldArray name="items">
                 {({ form, ...fieldArrayHelpers }) => {
                   const onAddClick = () => {
@@ -412,9 +409,11 @@ function InvoiceForm(props: ComponentProps) {
                         _.map(values.items, (item, index) => (
                           <div
                             key={index}
-                            className="mt-4 flex items-center space-x-4">
-                            <div className="flex-1">
+                            className="flex items-end space-y-4 space-x-0 sm:space-y-0 sm:space-x-4 flex-wrap">
+
+                            <div className="flex-auto w-full sm:flex-1 sm:w-auto">
                               <InputComp
+                                label="Item Name"
                                 name={`items[${index}].name`}
                                 id={`items[${index}].name`}
                                 error={
@@ -426,45 +425,63 @@ function InvoiceForm(props: ComponentProps) {
                                 value={item.name}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
+                                labelClassName={`${index > 0 ? 'sm:hidden' : ''}`}
                               />
                             </div>
-                            <div className="flex-none w-18">
-                              <InputComp
-                                name={`items[${index}].quantity`}
-                                id={`items[${index}].quantity`}
-                                error={
-                                  (errors.items?.[index] as FormikErrors<TInvoiceItem>)?.quantity &&
-                                  (touched.items?.[index] as FormikTouched<TInvoiceItem>)?.quantity
-                                    ? (errors.items[index] as FormikErrors<TInvoiceItem>)?.quantity
-                                    : ''
+
+                            <div className="flex-1 flex items-end space-x-4">
+                              <div className="flex-none w-18">
+                                <InputComp
+                                  label="Qty."
+                                  name={`items[${index}].quantity`}
+                                  id={`items[${index}].quantity`}
+                                  error={
+                                    (errors.items?.[index] as FormikErrors<TInvoiceItem>)?.quantity &&
+                                    (touched.items?.[index] as FormikTouched<TInvoiceItem>)?.quantity
+                                      ? (errors.items[index] as FormikErrors<TInvoiceItem>)?.quantity
+                                      : ''
+                                  }
+                                  value={item?.quantity}
+                                  onChange={handleChange}
+                                  onBlur={handleBlur}
+                                  labelClassName={`${index > 0 ? 'sm:hidden' : ''}`}
+                                />
+                              </div>
+                              <div className="flex-none w-24" >
+                                <InputComp
+                                  label="Price"
+                                  name={`items[${index}].price`}
+                                  id={`items[${index}].price`}
+                                  error={
+                                    (errors.items?.[index] as FormikErrors<TInvoiceItem>)?.price &&
+                                    (touched.items?.[index] as FormikTouched<TInvoiceItem>)?.price
+                                      ? (errors.items[index] as FormikErrors<TInvoiceItem>)?.price
+                                      : ''
+                                  }
+                                  value={item.price}
+                                  onChange={handleChange}
+                                  onBlur={handleBlur}
+                                  labelClassName={`${index > 0 ? 'sm:hidden' : ''}`}
+                                />
+                              </div>
+                              <div className="flex-1 space-y-10px sm:flex-none">
+                                {
+                                  <span className={`flex-none flex items-end w-18 text-grayish-sky text-body1 font-medium ${index > 0 ? 'sm:hidden' : ''}`}>
+                                    Total
+                                  </span>
                                 }
-                                value={item?.quantity}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                              />
-                            </div>
-                            <div className="flex-none w-24" >
-                              <InputComp
-                                name={`items[${index}].price`}
-                                id={`items[${index}].price`}
-                                error={
-                                  (errors.items?.[index] as FormikErrors<TInvoiceItem>)?.price &&
-                                  (touched.items?.[index] as FormikTouched<TInvoiceItem>)?.price
-                                    ? (errors.items[index] as FormikErrors<TInvoiceItem>)?.price
-                                    : ''
-                                }
-                                value={item.price}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                              />
-                            </div>
-                            <span className="flex-none w-18 text-grayish-slick text-h4 font-bold">
-                              { (item.quantity * item.price).toLocaleString('en-US', { minimumFractionDigits: 2 }) }
-                            </span>
-                            <div>
-                              <MemoDeleteIcon
-                                className="w-3 h-4 fill-current hover:text-redish cursor-pointer"
-                                onClick={() => onRemoveClick(index) } />
+                                <div className="flex items-center h-12">
+                                  <span className="flex-none w-18 text-grayish-slick text-h4 font-bold">
+                                    { (item.quantity * item.price).toLocaleString('en-US', { minimumFractionDigits: 2 }) }
+                                  </span>
+                                </div>
+                              </div>
+
+                              <div className="h-12 flex items-center pr-2 sm:pr-0">
+                                <MemoDeleteIcon
+                                  className="w-3 h-4 fill-current text-grayish-slick hover:text-redish cursor-pointer"
+                                  onClick={() => onRemoveClick(index) } />
+                              </div>
                             </div>
                           </div>
                         ))

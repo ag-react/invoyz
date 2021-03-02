@@ -6,6 +6,7 @@ interface ComponentProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: any,
   error?: string,
   className?: string,
+  labelClassName?: string
 }
 
 function InputComp(props: ComponentProps) {
@@ -13,7 +14,7 @@ function InputComp(props: ComponentProps) {
     <div className={`w-full space-y-10px ${props.className}`}>
       {
         (props.label) &&
-        <div className="flex items-end justify-between">
+        <div className={`flex items-end justify-between ${props.labelClassName}`}>
           {
             props.label &&
             <span className={`${props.error ? 'text-redish' : 'text-grayish-sky'} text-body1 font-medium`}>
@@ -23,7 +24,7 @@ function InputComp(props: ComponentProps) {
         </div>
       }
 
-      <div className="h-12 w-full ">
+      <div className="h-12 w-full">
         <input
           id={props.id}
           name={props.name}
