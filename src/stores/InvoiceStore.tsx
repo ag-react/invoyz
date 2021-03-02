@@ -12,7 +12,7 @@ export const createInvoiceStore = () => {
     initInvoices(data: TInvoice[]) {
       this.invoices = data;
     },
-    getInvoice(id: string) {
+    getInvoice(id: string): TInvoice {
       return _.find(this.invoices, {id });
     },
     addInvoice(invoice: TInvoice) {
@@ -32,7 +32,7 @@ export const createInvoiceStore = () => {
     },
     get currentInvoices(): TInvoice[] {
       return toJS(this.invoices);
-    }
+    },
   };
 }
 
