@@ -18,7 +18,7 @@ function DatePickerComp(props: ComponentProps) {
     return (
       <div
         ref={ref}
-        className={`h-12 w-full rounded px-5 flex items-center justify-between text-grayish-dark font-bold text-h4 bg-transparent dark:bg-indigo-darker border ${props.error ? 'border-redish hover:border-redish active:border focus:border-redish' : 'border-grayish dark:border-indigo-dark hover:border-indigo-faded active:border focus:border-indigo-faded dark:hover:border-indigo dark:focus:border-indigo'} focus:outline-none`}
+        className={`h-12 w-full rounded px-5 flex items-center justify-between text-grayish-dark dark:text-white font-bold text-h4 bg-transparent dark:bg-indigo-darker border ${props.error ? 'border-redish hover:border-redish active:border focus:border-redish' : 'border-grayish dark:border-indigo-dark hover:border-indigo-faded active:border focus:border-indigo-faded dark:hover:border-indigo dark:focus:border-indigo'} focus:outline-none`}
         onClick={prop.onClick}>
         <span>
           { prop.value }
