@@ -13,41 +13,42 @@ import { InvoiceStatusEnum, TInvoice } from '../../types/InvoiceTypes';
 import ButtonComp from '../../components/ButtonComp';
 
 import DialogContainer from '../../views/popup/DialogContainer';
+import PopupContainer from '../../views/popup/PopupContainer';
 import InvoiceStatus from '../../views/invoice/InvoiceStatus';
 import InvoiceConfirmDelete from '../../views/invoice/InvoiceConfirmDelete';
+import InvoiceEdit from '../../views/invoice/InvoiceEdit';
 
 function InvoiceDetailPage() {
   const router = useRouter();
   const { invoiceStore } = useStores();
 
-  const [invoice, setInvoice] = React.useState<TInvoice>();
   const [showDeleteDialog, setShowDeleteDialog] = React.useState<boolean>(false);
+  const [showEditInvoiceView, setShowEditInvoiceView] = React.useState<boolean>(false);
 
   const backToList = () => {
+    invoiceStore.clearCurrentInvoice();
     router.push('/');
   };
 
   const onDelete = () => {
-    invoiceStore.deleteInvoice(invoice.id)
+    invoiceStore.deleteInvoice(invoiceStore.currentInvoice.id)
     backToList();
   }
 
   const markAsPaid = () => {
-    invoiceStore.updateInvoiceStatus(invoice.id, InvoiceStatusEnum.PAID);
+    invoiceStore.updateInvoiceStatus(invoiceStore.currentInvoice.id, InvoiceStatusEnum.PAID);
   }
 
   React.useEffect(() => {
     if (router.query?.id) {
       const invoiceId = router.query.id as string;
-      const item = invoiceStore.getInvoice(invoiceId);
+      const item = invoiceStore.setCurrentInvoice(invoiceId);
 
-      if (item) {
-        setInvoice(item);
-      } else {
+      if (!item) {
         backToList();
       }
     }
-  }, [router.query])
+  }, [router.query]);
 
   return (
     <>
@@ -71,19 +72,19 @@ function InvoiceDetailPage() {
             </div>
 
             {
-              invoice &&
+              invoiceStore.currentInvoice &&
               <>
                 <div className="rounded-lg flex items-center justify-between bg-white px-8 py-6">
                   <div className="flex-1 flex items-center space-x-4 justify-between md:justify-start md:flex-none">
                     <span className="text-grayish-slick text-body1 font-medium">
                       Status
                     </span>
-                    <InvoiceStatus status={invoice.status}/>
+                    <InvoiceStatus status={invoiceStore.currentInvoice.status}/>
                   </div>
 
                   <div className="hidden md:flex md:items-center space-x-2">
                     {
-                      invoice.status !== InvoiceStatusEnum.PAID &&
+                      invoiceStore.currentInvoice.status !== InvoiceStatusEnum.PAID &&
                       <ButtonComp
                         label={
                           <div className="text-h4 font-bold text-grayish-sky">
@@ -94,7 +95,7 @@ function InvoiceDetailPage() {
                         }
                         className="group bg-grayish-light hover:bg-grayish"
                         onClick={() => {
-
+                          setShowEditInvoiceView(true);
                         }}
                       />
                     }
@@ -114,7 +115,7 @@ function InvoiceDetailPage() {
                     />
 
                     {
-                      invoice.status === InvoiceStatusEnum.PENDING &&
+                      invoiceStore.currentInvoice.status === InvoiceStatusEnum.PENDING &&
                       <ButtonComp
                         label={
                           <div className="text-h4 font-bold text-white">
@@ -136,25 +137,25 @@ function InvoiceDetailPage() {
                   <div className="flex flex-col space-y-8 md:flex-row md:space-y-0 md:justify-between">
                     <div className="flex flex-col space-y-1">
                       <div className="text-h3 font-bold">
-                        <span className="text-grayish-sky">#</span><span className="text-grayish-dark">{ invoice.id || '-'}</span>
+                        <span className="text-grayish-sky">#</span><span className="text-grayish-dark">{ invoiceStore.currentInvoice.id || '-'}</span>
                       </div>
                       <span className="text-body1 text-grayish-sky font-medium">
-                        { invoice.description || '-'}
+                        { invoiceStore.currentInvoice.description || '-'}
                       </span>
                     </div>
 
                     <div className="flex flex-col items-start md:items-end text-body2 text-grayish-sky font-medium space-y-1">
                       <span>
-                        { invoice.senderAddress.street || '-'}
+                        { invoiceStore.currentInvoice.senderAddress.street || '-'}
                       </span>
                       <span>
-                        { invoice.senderAddress.city || '-'}
+                        { invoiceStore.currentInvoice.senderAddress.city || '-'}
                       </span>
                       <span>
-                        { invoice.senderAddress.postCode || '-'}
+                        { invoiceStore.currentInvoice.senderAddress.postCode || '-'}
                       </span>
                       <span>
-                        { invoice.senderAddress.country || '-'}
+                        { invoiceStore.currentInvoice.senderAddress.country || '-'}
                       </span>
                     </div>
                   </div>
@@ -163,10 +164,10 @@ function InvoiceDetailPage() {
                     <div className="flex flex-col justify-between">
                       <div className="flex flex-col space-y-3">
                         <span className="text-body1 text-grayish-sky font-medium">
-                          Invoice Date
+                          invoiceStore.currentInvoice Date
                         </span>
                         <span className="text-h3 text-grayish-dark font-bold">
-                          { invoice.createdOn ? format(new Date(invoice.createdOn), 'dd MMM yyyy') : '-' }
+                          { invoiceStore.currentInvoice.createdOn ? format(new Date(invoiceStore.currentInvoice.createdOn), 'dd MMM yyyy') : '-' }
                         </span>
                       </div>
 
@@ -175,7 +176,7 @@ function InvoiceDetailPage() {
                           Payment Date
                         </span>
                         <span className="text-h3 text-grayish-dark font-bold">
-                          { invoice.paymentDue ? format(new Date(invoice.paymentDue), 'dd MMM yyyy') : '-' }
+                          { invoiceStore.currentInvoice.paymentDue ? format(new Date(invoiceStore.currentInvoice.paymentDue), 'dd MMM yyyy') : '-' }
                         </span>
                       </div>
                     </div>
@@ -186,21 +187,21 @@ function InvoiceDetailPage() {
                           Bill To
                         </span>
                         <span className="text-h3 text-grayish-dark font-bold">
-                          { invoice.clientName || '-' }
+                          { invoiceStore.currentInvoice.clientName || '-' }
                         </span>
                       </div>
                       <div className="flex flex-col items-start text-body2 text-grayish-sky font-medium space-y-1 break-words">
                         <span>
-                          { invoice.clientAddress.street || '-' }
+                          { invoiceStore.currentInvoice.clientAddress.street || '-' }
                         </span>
                         <span>
-                          { invoice.clientAddress.city || '-' }
+                          { invoiceStore.currentInvoice.clientAddress.city || '-' }
                         </span>
                         <span>
-                          { invoice.clientAddress.postCode || '-' }
+                          { invoiceStore.currentInvoice.clientAddress.postCode || '-' }
                         </span>
                         <span>
-                          { invoice.clientAddress.country || '-' }
+                          { invoiceStore.currentInvoice.clientAddress.country || '-' }
                         </span>
                       </div>
                     </div>
@@ -211,7 +212,7 @@ function InvoiceDetailPage() {
                           Sent To
                         </span>
                         <span className="text-h3 text-grayish-dark font-bold">
-                          { invoice.clientEmail || '-' }
+                          { invoiceStore.currentInvoice.clientEmail || '-' }
                         </span>
                       </div>
                     </div>
@@ -234,10 +235,10 @@ function InvoiceDetailPage() {
                         </span>
                       </div>
                       {
-                        (invoice.items && invoice.items.length > 0)
+                        (invoiceStore.currentInvoice.items && invoiceStore.currentInvoice.items.length > 0)
                         ? <div className="space-y-6 md:space-y-8">
                             {
-                              _.map(invoice.items, (item) => (
+                              _.map(invoiceStore.currentInvoice.items, (item) => (
                                 <div key={`${item.id}`}>
                                   <div className="flex items-center md:hidden justify-between">
                                     <div className="flex flex-col">
@@ -293,7 +294,7 @@ function InvoiceDetailPage() {
                       </span>
 
                       <span className="text-h2 font-bold text-white">
-                        £ {  invoice.total.toLocaleString('en-US', { minimumFractionDigits: 2 })  }
+                        £ {  invoiceStore.currentInvoice.total.toLocaleString('en-US', { minimumFractionDigits: 2 })  }
                       </span>
                     </div>
                   </div>
@@ -306,11 +307,11 @@ function InvoiceDetailPage() {
         </div>
 
         {
-          invoice &&
+          invoiceStore.currentInvoice &&
           <div className="flex justify-end bg-white">
             <div className="flex items-center p-6 space-x-2 md:hidden">
               {
-                invoice.status !== InvoiceStatusEnum.PAID &&
+                invoiceStore.currentInvoice.status !== InvoiceStatusEnum.PAID &&
                 <ButtonComp
                   label={
                     <div className="text-h4 font-bold text-grayish-sky">
@@ -321,7 +322,7 @@ function InvoiceDetailPage() {
                   }
                   className="group bg-grayish-light hover:bg-grayish"
                   onClick={() => {
-
+                    setShowEditInvoiceView(true);
                   }}
                 />
               }
@@ -341,7 +342,7 @@ function InvoiceDetailPage() {
               />
 
               {
-                invoice.status !== InvoiceStatusEnum.PENDING &&
+                invoiceStore.currentInvoice.status !== InvoiceStatusEnum.PENDING &&
                 <ButtonComp
                   label={
                     <div className="text-h4 font-bold text-white">
@@ -361,14 +362,23 @@ function InvoiceDetailPage() {
         }
       </div>
       {
-        showDeleteDialog &&
+        showDeleteDialog && invoiceStore.currentInvoice &&
         <DialogContainer>
           <InvoiceConfirmDelete
-            id={invoice.id}
+            id={invoiceStore.currentInvoice.id}
             onCancel={() => setShowDeleteDialog(false)}
             onDelete={onDelete}
           />
         </DialogContainer>
+      }
+
+      {
+        showEditInvoiceView && invoiceStore.currentInvoice &&
+        <PopupContainer>
+          <InvoiceEdit
+            invoice={invoiceStore.currentInvoice}
+            onClose={() => setShowEditInvoiceView(false)}/>
+        </PopupContainer>
       }
     </>
   )

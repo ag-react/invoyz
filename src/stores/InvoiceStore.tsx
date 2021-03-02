@@ -8,6 +8,7 @@ import {
 
 export const createInvoiceStore = () => {
   return {
+    invoice: null as TInvoice,
     invoices: [] as TInvoice[],
     initInvoices(data: TInvoice[]) {
       this.invoices = data;
@@ -30,8 +31,19 @@ export const createInvoiceStore = () => {
     deleteInvoice(id: string) {
       _.remove(this.invoices, (invoice: TInvoice) => invoice.id === id);
     },
+    setCurrentInvoice(id: string): TInvoice {
+      const invoice = _.find(this.invoices, { id });
+      this.invoice = invoice;
+      return invoice;
+    },
+    clearCurrentInvoice() {
+      this.invoice = null;
+    },
     get currentInvoices(): TInvoice[] {
       return toJS(this.invoices);
+    },
+    get currentInvoice(): TInvoice {
+      return toJS(this.invoice);
     },
   };
 }

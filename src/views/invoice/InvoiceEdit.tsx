@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
+import { toJS } from 'mobx';
 import _ from 'lodash';
 import { FormikProps } from 'formik';
 
@@ -13,22 +14,28 @@ import InvoiceForm from './InvoiceForm';
 import useStores from '../../hooks/useStores';
 
 interface ComponentProps {
+  invoice: TInvoice,
   onClose: () => void,
 }
 
-function InvoiceAdd(props: ComponentProps) {
+function InvoiceEdit(props: ComponentProps) {
   const formRef = React.useRef<FormikProps<TInvoice>>(null);
 
   const { invoiceStore } = useStores();
-  // const [status, setStatus] = React.useState<InvoiceStatusEnum>(InvoiceStatusEnum.DRAFT);
 
   const handleSubmit = (
-    status?: InvoiceStatusEnum
+    status?: InvoiceStatusEnum,
   ) => {
     if (status === InvoiceStatusEnum.DRAFT) {
       onSubmit(formRef.current.values, status);
-    } else {
+    } else if (status === InvoiceStatusEnum.PENDING) {
       formRef.current.handleSubmit();
+    } else {
+      if  (props.invoice.status === InvoiceStatusEnum.DRAFT) {
+        onSubmit(formRef.current.values, InvoiceStatusEnum.DRAFT);
+      } else {
+        formRef.current.handleSubmit();
+      }
     }
   }
 
@@ -38,7 +45,6 @@ function InvoiceAdd(props: ComponentProps) {
   ) => {
     values.status = status || InvoiceStatusEnum.PENDING;
     values.createdOn = new Date();
-    values.id = generateRandomId(2, 4).toUpperCase();
     values.paymentDue = values.paymentDue;
 
     values.items = _.map(values.items, (item) => {
@@ -52,9 +58,18 @@ function InvoiceAdd(props: ComponentProps) {
       return sum + item.total;
     }, 0);
 
-    invoiceStore.addInvoice(values);
+    invoiceStore.updateInvoice(props.invoice.id, values);
+    invoiceStore.setCurrentInvoice(props.invoice.id);
+
     props.onClose();
   }
+
+  React.useEffect(() => {
+    const values = toJS(props.invoice);
+    values.createdOn = values.createdOn ? new Date(values.createdOn) : null;
+    values.paymentDue = values.paymentDue ? new Date(values.paymentDue) : null;
+    formRef.current.setValues(values);
+  }, []);
 
   return (
     <div className="h-full flex flex-col pt-8 md:pt-10">
@@ -76,7 +91,9 @@ function InvoiceAdd(props: ComponentProps) {
 
       <div className="flex-none px-6 md:px-14">
         <div className="text-subtitle font-bold text-grayish-dark">
-          <span>New Invoice</span>
+          <span>
+            {`Edit #${props.invoice.id}`}
+          </span>
         </div>
       </div>
       <div className="px-6 md:px-14 mt-6 md:mt-12 pb-8 flex-1 overflow-y-auto">
@@ -92,7 +109,7 @@ function InvoiceAdd(props: ComponentProps) {
               label={
                 <div className="text-h4 font-bold text-grayish-sky">
                   <span>
-                    Discard
+                    Cancel
                   </span>
                 </div>
               }
@@ -106,28 +123,31 @@ function InvoiceAdd(props: ComponentProps) {
               label={
                 <div className="text-h4 font-bold text-grayish-slick">
                   <span>
-                    Save as Draft
+                    Save Changes
                   </span>
                 </div>
               }
               className="group bg-dim hover:bg-grayish-dark"
               onClick={() => {
-                handleSubmit(InvoiceStatusEnum.DRAFT);
+                handleSubmit();
               }}
             />
-            <ButtonComp
-              label={
-                <div className="text-h4 font-bold text-white">
-                  <span>
-                    Save & Send
-                  </span>
-                </div>
-              }
-              className="group bg-indigo hover:bg-indigo-faded"
-              onClick={() => {
-                handleSubmit(InvoiceStatusEnum.PENDING);
-              }}
-            />
+            {
+              props.invoice.status === InvoiceStatusEnum.DRAFT &&
+              <ButtonComp
+                label={
+                  <div className="text-h4 font-bold text-white">
+                    <span>
+                      Save & Send
+                    </span>
+                  </div>
+                }
+                className="group bg-indigo hover:bg-indigo-faded"
+                onClick={() => {
+                  handleSubmit(InvoiceStatusEnum.PENDING);
+                }}
+              />
+            }
           </div>
         </div>
       </div>
@@ -135,4 +155,4 @@ function InvoiceAdd(props: ComponentProps) {
   )
 }
 
-export default InvoiceAdd;
+export default InvoiceEdit;
