@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AddIcon from '../../components/icons/AddIcon';
+import MemoAddIcon from '../../components/icons/AddIcon';
 import ButtonComp from '../../components/ButtonComp';
 
 import InvoiceListFilter from './InvoiceListFilter';
@@ -36,7 +36,7 @@ function InvoiceListHeader(props: ComponentProps) {
         <ButtonComp
           icon={
             <div className="flex-none w-8 h-8 rounded-full flex items-center justify-center bg-white">
-              <AddIcon
+              <MemoAddIcon
                 width="10px"
                 height="10px"
                 className="group-hover:fill-current group-hover:text-indigo-faded"/>

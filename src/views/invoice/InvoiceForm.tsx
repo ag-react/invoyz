@@ -14,9 +14,10 @@ import {
 } from 'formik';
 import * as Yup from 'yup';
 
-import DeleteIcon from '../../components/icons/DeleteIcon';
-import InputComp from '../../components/fields/InputComp';
 import ButtonComp from '../../components/ButtonComp';
+import MemoDeleteIcon from '../../components/icons/DeleteIcon';
+import InputComp from '../../components/fields/InputComp';
+import DatePickerComp from '../../components/fields/DatePickerComp';
 
 import { TAddress, TInvoice, TInvoiceItem } from '../../types/InvoiceTypes';
 
@@ -131,6 +132,7 @@ function InvoiceForm(props: ComponentProps) {
           isValid,
           dirty,
           isSubmitting,
+          setFieldValue,
         } = formProps;
 
         return (
@@ -281,7 +283,21 @@ function InvoiceForm(props: ComponentProps) {
 
             <div className="mt-12 space-y-6">
               <div className="flex items-center justify-evenly space-x-6">
-                <InputComp
+                <DatePickerComp
+                  label={'Invoice Date'}
+                  name="paymentDue"
+                  id="paymentDue"
+                  value={values.paymentDue}
+                  error={
+                    errors.paymentDue && touched.paymentDue
+                      ? errors.paymentDue
+                      : ''
+                  }
+                  onChangeValue={(value: Date) => {
+                    setFieldValue('paymentDue', value, true)
+                  }}
+                  onBlur={handleBlur}/>
+                {/* <InputComp
                   type="date"
                   label={'Invoice Date'}
                   name="paymentDue"
@@ -292,7 +308,7 @@ function InvoiceForm(props: ComponentProps) {
                       : ''
                   }
                   onChange={handleChange}
-                  onBlur={handleBlur}/>
+                  onBlur={handleBlur}/> */}
                 <InputComp
                   label={'Payment Terms'}
                   name="paymentTerms"
@@ -410,7 +426,7 @@ function InvoiceForm(props: ComponentProps) {
                               { (item.quantity * item.price).toLocaleString('en-US', { minimumFractionDigits: 2 }) }
                             </span>
                             <div>
-                              <DeleteIcon
+                              <MemoDeleteIcon
                                 className="w-3 h-4 fill-current hover:text-redish cursor-pointer"
                                 onClick={() => onRemoveClick(index) } />
                             </div>

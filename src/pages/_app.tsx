@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 
 import '../styles/globals.scss';
+import "react-datepicker/dist/react-datepicker.css";
 
 import { StoreProvider } from '../contexts/store-context';
 
