@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 import _ from 'lodash';
 import { FormikProps } from 'formik';
@@ -22,7 +23,6 @@ function InvoiceAdd(props: ComponentProps) {
   const [status, setStatus] = React.useState<InvoiceStatusEnum>(InvoiceStatusEnum.DRAFT);
 
   const handleSubmit = () => {
-
     if (status === InvoiceStatusEnum.DRAFT) {
       onSubmit(formRef.current.values);
     } else {
@@ -53,6 +53,22 @@ function InvoiceAdd(props: ComponentProps) {
 
   return (
     <div className="h-full flex flex-col pt-8 md:pt-10">
+      <div className="px-6 mb-6 flex items-center space-x-6 cursor-pointer hover:opacity-75 md:hidden"
+        onClick={props.onClose}>
+        <Image
+          src="/assets/icon-arrow-left.svg"
+          alt="Arrow left icon"
+          width="8px"
+          height="12px"
+        />
+
+        <div>
+          <span className="text-h4 text-grayish-dark font-bold">
+            Go back
+          </span>
+        </div>
+      </div>
+
       <div className="flex-none px-6 md:px-14">
         <div className="text-subtitle font-bold text-grayish-dark">
           <span>New Invoice</span>

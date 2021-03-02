@@ -38,7 +38,7 @@ function InvoiceListItem(props: ComponentProps) {
       <div className="hidden md:col-start-6 md:col-end-7 md:flex items-center justify-end">
         <Image
           src="/assets/icon-arrow-right.svg"
-          alt="Logo"
+          alt="Arrow right icon"
           width="8px"
           height="12px" />
       </div>
