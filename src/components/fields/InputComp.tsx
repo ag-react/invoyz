@@ -20,13 +20,6 @@ function InputComp(props: ComponentProps) {
               { props.label }
             </span>
           }
-
-          {/* {
-            props.error &&
-            <span className="text-redish text-body3 font-semibold">
-              { props.error }
-            </span>
-          } */}
         </div>
       }
 

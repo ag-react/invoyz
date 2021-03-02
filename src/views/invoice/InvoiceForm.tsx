@@ -17,11 +17,30 @@ import * as Yup from 'yup';
 import ButtonComp from '../../components/ButtonComp';
 import MemoDeleteIcon from '../../components/icons/DeleteIcon';
 import InputComp from '../../components/fields/InputComp';
+import DropdownComp from '../../components/fields/DropdownComp';
 import DatePickerComp from '../../components/fields/DatePickerComp';
 
 import { TAddress, TInvoice, TInvoiceItem } from '../../types/InvoiceTypes';
 
 const kRequired = 'required';
+const kTermItems = [
+  {
+    key: 1,
+    value: 'Net 1 Day',
+  },
+  {
+    key: 7,
+    value: 'Net 7 Day',
+  },
+  {
+    key: 14,
+    value: 'Net 14 Day',
+  },
+  {
+    key: 30,
+    value: 'Net 30 Day',
+  }
+]
 
 const InvoiceFormSchema =
   Yup.object()
@@ -66,9 +85,11 @@ const InvoiceFormSchema =
               name: Yup.string()
                 .required(kRequired),
               quantity: Yup.number()
-                .required(kRequired),
+                .required(kRequired)
+                .min(0),
               price: Yup.number()
-                .required(kRequired),
+                .required(kRequired)
+                .min(0),
               total: Yup.number()
                 .optional(),
           })
@@ -133,6 +154,7 @@ function InvoiceForm(props: ComponentProps) {
           dirty,
           isSubmitting,
           setFieldValue,
+          setTouched,
         } = formProps;
 
         return (
@@ -149,6 +171,7 @@ function InvoiceForm(props: ComponentProps) {
                   label={'Street Address'}
                   name="senderAddress.street"
                   id="senderAddress.street"
+                  value={values.senderAddress?.street}
                   error={
                     errors.senderAddress?.street && touched.senderAddress?.street
                       ? errors.senderAddress.street
@@ -164,6 +187,7 @@ function InvoiceForm(props: ComponentProps) {
                   label={'City'}
                   name="senderAddress.city"
                   id="senderAddress.city"
+                  value={values.senderAddress?.city}
                   error={
                     errors.senderAddress?.city && touched.senderAddress?.city
                       ? errors.senderAddress.city
@@ -175,6 +199,7 @@ function InvoiceForm(props: ComponentProps) {
                   label={'Post Code'}
                   name="senderAddress.postCode"
                   id="senderAddress.postCode"
+                  value={values.senderAddress?.postCode}
                   error={
                     errors.senderAddress?.postCode && touched.senderAddress?.postCode
                       ? errors.senderAddress.postCode
@@ -186,6 +211,7 @@ function InvoiceForm(props: ComponentProps) {
                   label={'Country'}
                   name="senderAddress.country"
                   id="senderAddress.country"
+                  value={values.senderAddress?.country}
                   error={
                     errors.senderAddress?.country && touched.senderAddress?.country
                       ? errors.senderAddress.country
@@ -208,6 +234,7 @@ function InvoiceForm(props: ComponentProps) {
                   label={"Client's name"}
                   name="clientName"
                   id="clientName"
+                  value={values.clientName}
                   error={
                     errors.clientName && touched.clientName
                       ? errors.clientName
@@ -223,6 +250,7 @@ function InvoiceForm(props: ComponentProps) {
                   label={"Client's Email"}
                   name="clientEmail"
                   id="clientEmail"
+                  value={values.clientEmail}
                   error={
                     errors.clientEmail && touched.clientEmail
                       ? errors.clientEmail
@@ -237,6 +265,7 @@ function InvoiceForm(props: ComponentProps) {
                   label={"Street Address"}
                   name="clientAddress.street"
                   id="clientAddress.street"
+                  value={values.clientAddress.street}
                   error={
                     errors.clientAddress?.street && touched.clientAddress?.street
                       ? errors.clientAddress.street
@@ -250,6 +279,7 @@ function InvoiceForm(props: ComponentProps) {
                 <InputComp label={'City'}
                   name="clientAddress.city"
                   id="clientAddress.city"
+                  value={values.clientAddress.city}
                   error={
                     errors.clientAddress?.city && touched.clientAddress?.city
                       ? errors.clientAddress.city
@@ -260,6 +290,7 @@ function InvoiceForm(props: ComponentProps) {
                 <InputComp label={'Post Code'}
                   name="clientAddress.postCode"
                   id="clientAddress.postCode"
+                  value={values.clientAddress.postCode}
                   error={
                     errors.clientAddress?.postCode && touched.clientAddress?.postCode
                       ? errors.clientAddress.postCode
@@ -271,6 +302,7 @@ function InvoiceForm(props: ComponentProps) {
                   label={'Country'}
                   name="clientAddress.country"
                   id="clientAddress.country"
+                  value={values.clientAddress.country}
                   error={
                     errors.clientAddress?.country && touched.clientAddress?.country
                       ? errors.clientAddress.country
@@ -297,19 +329,22 @@ function InvoiceForm(props: ComponentProps) {
                     setFieldValue('paymentDue', value, true)
                   }}
                   onBlur={handleBlur}/>
-                {/* <InputComp
-                  type="date"
-                  label={'Invoice Date'}
-                  name="paymentDue"
-                  id="paymentDue"
+
+                <DropdownComp
+                  label={'Payment Terms'}
+                  items={kTermItems}
+                  value={values.paymentTerms}
+                  onChange={(item) => {
+                    setFieldValue('paymentTerms', item.key, true)
+                  }}
                   error={
-                    errors.paymentDue && touched.paymentDue
-                      ? errors.paymentDue
+                    errors.paymentTerms && touched.paymentTerms
+                      ? errors.paymentTerms
                       : ''
                   }
-                  onChange={handleChange}
-                  onBlur={handleBlur}/> */}
-                <InputComp
+                  onBlur={() => setTouched({paymentTerms: true}, true) }
+                />
+                {/* <InputComp
                   label={'Payment Terms'}
                   name="paymentTerms"
                   id="paymentTerms"
@@ -319,7 +354,7 @@ function InvoiceForm(props: ComponentProps) {
                       : ''
                   }
                   onChange={handleChange}
-                  onBlur={handleBlur}/>
+                  onBlur={handleBlur}/> */}
               </div>
 
               <div>
@@ -327,6 +362,7 @@ function InvoiceForm(props: ComponentProps) {
                   label={"Project Description"}
                   name="description"
                   id="description"
+                  value={values.description}
                   error={
                     errors.description && touched.description
                       ? errors.description

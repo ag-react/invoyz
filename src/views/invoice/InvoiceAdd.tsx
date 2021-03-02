@@ -26,9 +26,9 @@ function InvoiceAdd(props: ComponentProps) {
 
   const onSubmit = (values: TInvoice) => {
     values.status = InvoiceStatusEnum.DRAFT;
-    values.createdOn = new Date().toISOString();
+    values.createdOn = new Date();
     values.id = generateRandomId(2, 4).toUpperCase();
-    values.paymentDue = new Date(values.paymentDue).toISOString();
+    values.paymentDue = new Date(values.paymentDue);
 
     values.items = _.map(values.items, (item) => {
       item.quantity = +item.quantity;

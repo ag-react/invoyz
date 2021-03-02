@@ -2,7 +2,7 @@ export const generateRandomId = (
   alphaSize: number,
   numericSize: number,
 ) => {
-  var text = " ";
+  var text = "";
   var numSet = "0123456789";
   var alphaSet = "abcdefghijklmnopqrstuvwxyz";
 
