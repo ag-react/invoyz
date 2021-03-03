@@ -14,7 +14,7 @@ interface ComponentProps {
 function InvoiceListHeader(props: ComponentProps) {
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex flex-col space-y-2 xs:flex-row xs:items-center xs:justify-between">
       <div className="space-y-2">
         <div>
           <span className="text-h2 font-bold text-grayish-dark md:text-h1 dark:text-white">
@@ -31,7 +31,7 @@ function InvoiceListHeader(props: ComponentProps) {
         </div>
       </div>
 
-      <div className="space-x-4 md:space-x-8 flex items-center">
+      <div className="flex justify-between items-center xs:space-x-4 xs:md:space-x-8xs:justify-start">
         <InvoiceListFilter onChange={props.onFilterChange}/>
         <ButtonComp
           icon={

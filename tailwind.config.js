@@ -1,17 +1,20 @@
+const { screens } = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: [
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
+    screens: {
+      xs: '375px',
+      ...screens
+    },
     fontFamily: {
       sans: ['Spartan'],
       serif: ['sans-serif']
     },
     extend: {
-      screens: {
-        xs: '375px',
-      },
       fontSize: {
         'h1': ['32px', {
           lineHeight: '36px',
