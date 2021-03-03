@@ -4,9 +4,7 @@ import Image from 'next/image'
 function InvoiceListEmpty() {
   return (
     <div className="h-full flex items-center justify-center">
-      <div className="flex flex-col justify-center" style={{
-        maxWidth: '240px'
-      }}>
+      <div className="flex flex-col justify-center w-60">
         <Image
           src="/assets/illustration-empty.svg"
           alt="Logo"
