@@ -36,7 +36,7 @@ function InvoiceListItem(props: ComponentProps) {
           { props.invoice.clientName || '-' }
         </span>
       </div>
-      <div className="flex items-center col-start-1 col-end-5 row-start-2 row-end-3 xs:mt-6 xs:col-start-1 xs:col-end-2 xs:row-start-2 xs:row-end-3 md:col-start-4 md:col-end-5 md:row-start-1 md:row-end-2 md:justify-end">
+      <div className="flex items-center col-start-1 col-end-5 row-start-2 row-end-3 xs:mt-6 xs:col-start-1 xs:col-end-2 xs:row-start-2 xs:row-end-3 md:col-start-4 md:col-end-5 md:row-start-1 md:row-end-2 md:justify-end md:mt-0">
         <span className="text-h3 text-grayish-dark dark:text-white font-bold">
           { '£ ' + props.invoice.total.toLocaleString('en-US', { minimumFractionDigits: 2 }) }
         </span>
